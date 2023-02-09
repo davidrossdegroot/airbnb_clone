@@ -219,9 +219,9 @@ ActiveRecord::Base.transaction do
     username: 'nikkicks',
     email: Faker::Internet.free_email,
     bio: "Hi, I'm Nikki! Whether you are traveling to San Francisco for a night or two, or are coming for a month or more, I can help you find the perfect clean and stylishly furnished place to call home.\n\n
- 
+
     You can stay with me and my cat in my beautiful Inner Sunset Edwardian, or in one of many homes that I manage in the bay area. I specialize in 30 night+ furnished corporate rentals for traveling nurses and tech workers, so feel free to reach out and see how I can help.\n\n
-    
+
     I love to create clean, beautiful, thoughtfully designed homes. Message me if you are interested in design consultation, or need help with Airbnb management of your listings! ",
     joined_date: '2012-09-04',
     password: 'password'
@@ -286,12 +286,12 @@ ActiveRecord::Base.transaction do
     username: 'johnny19',
     email: Faker::Internet.free_email,
     bio: "Hi, I'm John! Now also renting directly from my own site: buttersuites\n\n
- 
+
     I have lived in California (in various parts) my whole life. I love it here!
     I enjoy everything the area has to offer. One of the things I love most is the diversity, talent, and friendliness of the people. I've settled down here in San Mateo, and have a loving family with two little ones, with whom I spend all of my spare time.\n\n
-    
+
     I love traveling with my family but we're also happy just learning about other cultures through the people we meet.\n\n
-    
+
     I'm also kind of a nerd. I've been working in the video game industry for most of my career, and now I work at (Hidden by Airbnb).",
     joined_date: '2015-08-06',
     password: 'password'
@@ -336,12 +336,12 @@ ActiveRecord::Base.transaction do
     # Personal users
     if idx < 9
       u = User.all[idx]
-      file = EzDownload.open("https://aerbnb-seeds.s3-us-west-1.amazonaws.com/photos/users/0#{idx+1}-user.jpg")
+      file = URI.open("https://aerbnb-seeds.s3-us-west-1.amazonaws.com/photos/users/0#{idx+1}-user.jpg").read
       u.photo.attach(io: file, filename: "0#{idx+1}-user.jpg")
       u.save!
     else
       u = User.all[idx]
-      file = EzDownload.open("https://aerbnb-seeds.s3-us-west-1.amazonaws.com/photos/users/#{idx+1}-user.jpg")  
+      file = URI.open("https://aerbnb-seeds.s3-us-west-1.amazonaws.com/photos/users/#{idx+1}-user.jpg").read
       u.photo.attach(io: file, filename: "#{idx+1}-user.jpg")
       u.save!
     end
@@ -349,7 +349,7 @@ ActiveRecord::Base.transaction do
 
 
 
-  
+
   ###################################
   # Listings
   ###################################
@@ -387,7 +387,7 @@ ActiveRecord::Base.transaction do
   #   host_id: id,
   # )
 
-  # Listing 1 
+  # Listing 1
   Listing.create(
     title: "Downtown SF Studio Apartment Near Civic Center",
     description: "Explore the heart of San Francisco from this designer studio. Unwind in this boutique, open-concept space with carefully selected decor or gaze out across the city from the rooftop terrace with 360-degree views, a BBQ, and a seating area.",
@@ -1213,19 +1213,19 @@ ActiveRecord::Base.transaction do
 
       if idx < 9
         # Full size Image
-        file = EzDownload.open("https://aerbnb-seeds.s3-us-west-1.amazonaws.com/photos/listings/SF/0#{idx+1}-SF/original/0#{idx+1}-0#{photo_idx+1}-SF.jpg")  
+        file = URI.open("https://aerbnb-seeds.s3-us-west-1.amazonaws.com/photos/listings/SF/0#{idx+1}-SF/original/0#{idx+1}-0#{photo_idx+1}-SF.jpg").read
         listing.photos.attach(io: file, filename: "0#{idx+1}-0#{photo_idx+1}-SF.jpg")
-        
+
         # Thumbnail
-        file = EzDownload.open("https://aerbnb-seeds.s3-us-west-1.amazonaws.com/photos/listings/SF/0#{idx+1}-SF/thumbnail/0#{idx+1}-0#{photo_idx+1}-SF-thumb.jpg")  
+        file = URI.open("https://aerbnb-seeds.s3-us-west-1.amazonaws.com/photos/listings/SF/0#{idx+1}-SF/thumbnail/0#{idx+1}-0#{photo_idx+1}-SF-thumb.jpg").read
         listing.thumbnails.attach(io: file, filename: "0#{idx+1}-0#{photo_idx+1}-SF-thumb.jpg")
       else
         # Full size Image
-        file = EzDownload.open("https://aerbnb-seeds.s3-us-west-1.amazonaws.com/photos/listings/SF/#{idx+1}-SF/original/#{idx+1}-0#{photo_idx+1}-SF.jpg")  
+        file = URI.open("https://aerbnb-seeds.s3-us-west-1.amazonaws.com/photos/listings/SF/#{idx+1}-SF/original/#{idx+1}-0#{photo_idx+1}-SF.jpg").read
         listing.photos.attach(io: file, filename: "#{idx+1}-0#{photo_idx+1}-SF.jpg")
 
         # Thumbnail
-        file = EzDownload.open("https://aerbnb-seeds.s3-us-west-1.amazonaws.com/photos/listings/SF/#{idx+1}-SF/thumbnail/#{idx+1}-0#{photo_idx+1}-SF-thumb.jpg")  
+        file = URI.open("https://aerbnb-seeds.s3-us-west-1.amazonaws.com/photos/listings/SF/#{idx+1}-SF/thumbnail/#{idx+1}-0#{photo_idx+1}-SF-thumb.jpg").read
         listing.thumbnails.attach(io: file, filename: "#{idx+1}-0#{photo_idx+1}-SF-thumb.jpg")
       end
 
@@ -1353,9 +1353,9 @@ ActiveRecord::Base.transaction do
   10.times do
     reviews.each_with_index do |review, review_idx|
       Review.create(
-        review: review, 
-        user_id: User.all[(0...num_users).to_a.sample].id, 
-        listing_id: Listing.all[(0...num_listings).to_a.sample].id, 
+        review: review,
+        user_id: User.all[(0...num_users).to_a.sample].id,
+        listing_id: Listing.all[(0...num_listings).to_a.sample].id,
         rating: (4..5).to_a.sample,
         accuracy: (4..5).to_a.sample,
         communication: (4..5).to_a.sample,

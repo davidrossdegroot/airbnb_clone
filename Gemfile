@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.1'
+ruby '3.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.3'
+gem 'rails', '~> 6.1.7.2'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
@@ -36,7 +36,6 @@ gem 'jbuilder', '~> 2.5'
   gem 'bcrypt'
   gem 'jquery-rails'
   gem 'aws-sdk-s3', require: false
-  gem 'ez_download', git: 'https://github.com/OscarAlvarez8830/EZDownload.git'
   gem 'faker'
 
 # Reduces boot times through caching; required in config/boot.rb

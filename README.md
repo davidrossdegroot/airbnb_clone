@@ -143,3 +143,15 @@ Aerbnb uses a PostgreSQL database to store its relational data.
 * Infinite scrolling or pagination on the index pages
 * Implement ability to interact with friends, i.e. messaging
 * Additional filters for listings
+
+
+### To run locally
+Setup the app:
+```
+bin/setup
+```
+
+To Run 
+```
+bin/run
+```
