@@ -336,12 +336,12 @@ ActiveRecord::Base.transaction do
     # Personal users
     if idx < 9
       u = User.all[idx]
-      file = URI.open("https://aerbnb-seeds.s3-us-west-1.amazonaws.com/photos/users/0#{idx+1}-user.jpg").read
+      file = URI.parse("https://aerbnb-seeds.s3-us-west-1.amazonaws.com/photos/users/0#{idx+1}-user.jpg").open
       u.photo.attach(io: file, filename: "0#{idx+1}-user.jpg")
       u.save!
     else
       u = User.all[idx]
-      file = URI.open("https://aerbnb-seeds.s3-us-west-1.amazonaws.com/photos/users/#{idx+1}-user.jpg").read
+      file = URI.parse("https://aerbnb-seeds.s3-us-west-1.amazonaws.com/photos/users/#{idx+1}-user.jpg").open
       u.photo.attach(io: file, filename: "#{idx+1}-user.jpg")
       u.save!
     end
@@ -1213,19 +1213,19 @@ ActiveRecord::Base.transaction do
 
       if idx < 9
         # Full size Image
-        file = URI.open("https://aerbnb-seeds.s3-us-west-1.amazonaws.com/photos/listings/SF/0#{idx+1}-SF/original/0#{idx+1}-0#{photo_idx+1}-SF.jpg").read
+        file = URI.parse("https://aerbnb-seeds.s3-us-west-1.amazonaws.com/photos/listings/SF/0#{idx+1}-SF/original/0#{idx+1}-0#{photo_idx+1}-SF.jpg").open
         listing.photos.attach(io: file, filename: "0#{idx+1}-0#{photo_idx+1}-SF.jpg")
 
         # Thumbnail
-        file = URI.open("https://aerbnb-seeds.s3-us-west-1.amazonaws.com/photos/listings/SF/0#{idx+1}-SF/thumbnail/0#{idx+1}-0#{photo_idx+1}-SF-thumb.jpg").read
+        file = URI.parse("https://aerbnb-seeds.s3-us-west-1.amazonaws.com/photos/listings/SF/0#{idx+1}-SF/thumbnail/0#{idx+1}-0#{photo_idx+1}-SF-thumb.jpg").open
         listing.thumbnails.attach(io: file, filename: "0#{idx+1}-0#{photo_idx+1}-SF-thumb.jpg")
       else
         # Full size Image
-        file = URI.open("https://aerbnb-seeds.s3-us-west-1.amazonaws.com/photos/listings/SF/#{idx+1}-SF/original/#{idx+1}-0#{photo_idx+1}-SF.jpg").read
+        file = URI.parse("https://aerbnb-seeds.s3-us-west-1.amazonaws.com/photos/listings/SF/#{idx+1}-SF/original/#{idx+1}-0#{photo_idx+1}-SF.jpg").open
         listing.photos.attach(io: file, filename: "#{idx+1}-0#{photo_idx+1}-SF.jpg")
 
         # Thumbnail
-        file = URI.open("https://aerbnb-seeds.s3-us-west-1.amazonaws.com/photos/listings/SF/#{idx+1}-SF/thumbnail/#{idx+1}-0#{photo_idx+1}-SF-thumb.jpg").read
+        file = URI.parse("https://aerbnb-seeds.s3-us-west-1.amazonaws.com/photos/listings/SF/#{idx+1}-SF/thumbnail/#{idx+1}-0#{photo_idx+1}-SF-thumb.jpg").open
         listing.thumbnails.attach(io: file, filename: "#{idx+1}-0#{photo_idx+1}-SF-thumb.jpg")
       end
 
